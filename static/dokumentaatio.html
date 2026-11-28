@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Viikko 5 – dokumentaatio</title>
+  <style>
+    :root {
+      --aubergine: #2c001e; --aubergine-2: #4a0d36; --orange: #e95420; --orange-soft: #ffd9c9;
+      --paper: #fbf9fa; --card: #ffffff; --ink: #26121f; --muted: #6d5a66; --line: #e6dde2;
+      --code-bg: #1d0a16; --code-text: #f4e9ef;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #170a13; --card: #231019; --ink: #f4e9ef; --muted: #b49aa9; --line: #3b2332; --orange-soft: #5a2412; --code-bg: #0e0409; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; grid-template-columns: 320px 1fr; background: var(--paper); color: var(--ink); font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; line-height: 1.6; }
+    aside { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 28px; background: linear-gradient(170deg, var(--aubergine-2), var(--aubergine) 70%); color: #fff; }
+    aside h1 { margin: 0 0 8px; font-size: 2rem; line-height: 1.1; letter-spacing: -0.01em; }
+    aside .sub { margin: 0 0 36px; color: #e8cfdc; }
+    [role="tablist"] { display: flex; flex-direction: column; gap: 6px; }
+    [role="tab"] { text-align: left; font: inherit; color: #f0dde7; text-decoration: none; border-left: 3px solid transparent; padding: 12px 14px; border-radius: 0 6px 6px 0; }
+    [role="tab"]:hover { background: rgba(255,255,255,0.08); }
+    [role="tab"][aria-selected="true"] { background: rgba(255,255,255,0.12); color: #fff; border-left-color: var(--orange); font-weight: 600; }
+    .served { display: flex; align-items: center; gap: 10px; font: 0.85rem ui-monospace, Consolas, monospace; color: #e8cfdc; }
+    .served i { width: 9px; height: 9px; border-radius: 50%; background: #3ddc84; }
+    main { padding: 64px 7vw 80px; max-width: 980px; }
+    main h2 { margin: 0 0 28px; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.2; }
+    section { margin-top: 40px; }
+    section h3 { margin: 0 0 10px; font-size: 1.25rem; }
+    a { color: var(--orange); }
+    code { background: var(--code-bg); color: var(--code-text); padding: 2px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+    pre { background: var(--code-bg); color: var(--code-text); padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.45; }
+    pre code { padding: 0; background: none; }
+    details { margin-top: 12px; }
+    summary { cursor: pointer; font-weight: 600; }
+    .path { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0; }
+    .path span { padding: 10px 14px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; }
+    .path b { color: var(--orange); }
+    .distro { padding: 30px 28px; border-radius: 14px; background: var(--orange); color: #fff; }
+    .distro strong { display: block; font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.1; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: var(--orange-soft); color: var(--ink); }
+    .table-scroll { overflow-x: auto; }
+    @media (max-width: 820px) {
+      body { grid-template-columns: 1fr; }
+      aside { position: static; height: auto; padding: 28px 20px 12px; gap: 20px; }
+      aside .sub { margin-bottom: 16px; }
+      [role="tablist"] { flex-direction: row; overflow-x: auto; gap: 4px; }
+      [role="tab"] { white-space: nowrap; border-left: 0; border-bottom: 3px solid transparent; border-radius: 6px 6px 0 0; }
+      [role="tab"][aria-selected="true"] { border-bottom-color: var(--orange); }
+      .served { display: none; }
+      main { padding: 36px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <div>
+      <h1>Ville's Linux Server</h1>
+      <p class="sub">Welcome to my Website!</p>
+      <div role="tablist" aria-label="Viikot">
+        <a role="tab" href="/" aria-selected="false">Week 1</a>
+        <a role="tab" href="/viikko2/" aria-selected="false">Week 2</a>
+        <a role="tab" href="/viikko3/" aria-selected="false">Week 3</a>
+        <a role="tab" href="http://128.214.254.158/viikko4/" aria-selected="false">Week 4</a>
+        <a role="tab" href="/viikko5/" aria-selected="true">Week 5</a>
+        <a role="tab" href="/viikko6/" aria-selected="false">Week 6</a>
+        <a role="tab" href="/viikko7/" aria-selected="false">Week 7</a>
+      </div>
+    </div>
+    <div class="served"><i></i>served by nginx</div>
+  </aside>
+
+  <main>
+    <div class="distro">
+      <strong>Viikko 5: LLM-chat ja CI/CD</strong>
+      Chat toimii omalla palvelimella, ja jokainen onnistunut push julkaisee uuden version automaattisesti.
+    </div>
+
+    <section>
+      <h2>Linkit</h2>
+      <ul>
+        <li>Chat: <a href="/viikko5/">http://195.148.21.71/viikko5/</a></li>
+        <li>GitHub-repo: <a href="https://github.com/Subikoira/linux-llm-chat">github.com/Subikoira/linux-llm-chat</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Pyyntöpolku</h2>
+      <div class="path">
+        <span>Selain</span><b>→</b><span>Nginx</span><b>→</b><span>Gunicorn + Flask</span><b>→</b><span>Ollama (malli)</span>
+      </div>
+      <div class="path">
+        <span>Flask</span><b>→</b><span>MariaDB (keskusteluhistoria)</span>
+      </div>
+      <p>Nginx ottaa vastaan pyynnöt osoitteessa <code>/viikko5/</code> ja poistaa osoitteen alusta <code>/viikko5</code>, ennen kuin se välittää pyynnön Flaskille Unix-soketin kautta. Etuliitteen se kertoo Flaskille otsakkeessa, jotta linkit ja tiedostot löytyvät alipolusta.</p>
+    </section>
+
+    <section>
+      <h2>Pipeline</h2>
+      <ul>
+        <li><b>Pull request:</b> ajetaan ruff (tyylitarkistus), pytest (testit) ja <code>bash -n</code> (shell-skriptien tarkistus). Testit eivät tarvitse oikeaa mallia tai tietokantaa, koska ne on korvattu valeilla.</li>
+        <li><b>Push mainiin:</b> ajetaan samat tarkistukset. Jos ne menevät läpi, deploy kopioi koodin palvelimelle, asentaa riippuvuudet, päivittää Nginxin ja systemd:n asetukset ja käynnistää uudelleen vain <code>chatapp</code>-palvelun. Jos testi kaatuu, deploy ei käynnisty.</li>
+        <li><b>Tarkistus:</b> palvelimella kysytään sovellukselta <code>/health</code> ja verrataan vastausta commitin tunnisteeseen (SHA). Lopuksi työnkulku tarkistaa vielä julkisen osoitteen <a href="/viikko5/health">/viikko5/health</a>. Jos tunniste ei täsmää, ajo menee punaiseksi.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Käyttäjät, oikeudet ja salaisuudet</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Mikä</th><th>Käyttäjä / oikeudet</th></tr></thead>
+          <tbody>
+            <tr><td>Sovelluksen Linux-käyttäjä</td><td><code>chatapp</code> (ei kirjautumista)</td></tr>
+            <tr><td>Deploy-käyttäjä</td><td><code>ubuntu</code>, omistaa koodin hakemistossa <code>/opt/chatapp/app</code></td></tr>
+            <tr><td>Tietokantakäyttäjä</td><td><code>chatapp@localhost</code>, oikeudet vain tietokantaan <code>chatapp</code> (SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, ALTER)</td></tr>
+            <tr><td>Ympäristötiedosto</td><td><code>/etc/chatapp/chatapp.env</code>, omistaja <code>root:chatapp</code>, oikeudet 640</td></tr>
+            <tr><td>Soketti</td><td><code>/run/chatapp/gunicorn.sock</code>, omistaja <code>chatapp:chatapp</code>, oikeudet 770</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Tietokannan salasana on vain palvelimen env-tiedostossa. Palvelimen osoite, käyttäjä, SSH-avain ja palvelimen tunniste (host key) ovat GitHub Secretsissä. Mitään niistä ei ole commitoitu repoon. GitHub Actionsille on oma SSH-avain, ei oma henkilökohtainen avain.</p>
+      <p>GitHubin ajokoneiden IP-osoitteet vaihtelevat, joten SSH-portti 22 on auki kaikille. Se on silti kohtuullisen turvallinen, koska palvelin hyväksyy vain avainkirjautumisen, eikä salasanalla pääse sisään.</p>
+    </section>
+
+    <section>
+      <h2>Miten /viikko5/ lisättiin Nginxiin</h2>
+      <p>Nginxin asetukset ovat omassa tiedostossaan <code>/etc/nginx/snippets/chatapp.conf</code>, ja ne tulevat repon tiedostosta <code>deploy/nginx/chatapp.conf</code>. Olemassa olevan sivuston <code>server</code>-lohkoon lisättiin vain yksi rivi: <code>include snippets/chatapp.conf;</code>. Muita sivuja ei muutettu, ja viikot 1–4 toimivat edelleen. Ennen muutosta tein oletussivustosta varmuuskopion, ja deploy testaa asetukset komennolla <code>nginx -t</code> ennen uudelleenlatausta.</p>
+    </section>
+
+    <section>
+      <h2>Mallin valinta, muisti ja levy</h2>
+      <p>Malli on <code>llama3.2:1b</code> (1,3 GB). Se on pieni, ja sen saa pyörimään palvelimen suorittimella ilman näytönohjainta. Koneessa on 7,6 GiB muistia, ja mallin ollessa ladattuna niistä on käytössä 2,3 GiB. Levyä on käytössä 7,1 GB 77 GB:sta (10 %). Swappia ei tarvittu, eikä palvelinta tarvinnut suurentaa.</p>
+    </section>
+
+    <section>
+      <h2>Replikointi palvelimelle B</h2>
+      <p>Kyllä, chatin tietokanta replikoituu palvelimelle B. Viikon 4 replikointi kopioi kaikki A:n tietokannat B:lle, eikä <code>chatapp</code>-tietokantaa ole rajattu pois, joten uudet viestit kopioituvat sinne itsestään. Chat itse toimii vain A:lla, koska B on vain luettava kopio, johon sovellus ei voisi tallentaa viestejä.</p>
+      <details>
+        <summary>Tarkistus palvelimelta B (28.11.2026)</summary>
+<pre><code>$ sudo mysql -e "SHOW DATABASES;"
+chatapp
+information_schema
+mysql
+performance_schema
+sys
+viikko2
+
+$ sudo mysql -e "SELECT COUNT(*) AS viesteja FROM chatapp.messages;"
+viesteja
+8</code></pre>
+      </details>
+    </section>
+
+    <section>
+      <h2>Testitulokset</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Testi</th><th>Tulos</th></tr></thead>
+          <tbody>
+            <tr><td>/viikko5/ on julkinen ja malli vastaa</td><td>Toimii.</td></tr>
+            <tr><td>Keskustelu säilyy sivun uudelleenlatauksessa, ja uusi selaimen istunto alkaa tyhjänä</td><td>Toimii.</td></tr>
+            <tr><td>Ollama ja sovellus eivät näy internetiin</td><td>Toimii. Ollama kuuntelee vain osoitteessa 127.0.0.1:11434, ja selain ei saa siihen yhteyttä ulkoapäin. Sovelluksella ei ole TCP-porttia lainkaan (Unix-soketti).</td></tr>
+            <tr><td>Push mainiin julkaisee automaattisesti ja /health näyttää uuden SHA:n</td><td>Toimii. Kolme onnistunutta deployta eri commiteilla (esimerkiksi 25.11.2026 klo 21.56 commit f6d0e6e ja 28.11.2026 klo 18.17 commit ec2c127). <a href="https://github.com/Subikoira/linux-llm-chat/actions">Kaikki ajot Actions-välilehdellä</a>.</td></tr>
+            <tr><td>Epäonnistuva testi ei deployaudu</td><td>Toimii. 28.11.2026 klo 18.10 tein tarkoituksella epäonnistuvan testin (commit c203e57). Testit menivät punaisiksi ja deploy ohitettiin. <a href="https://github.com/Subikoira/linux-llm-chat/actions/runs/46163682130">Linkki ajoon</a>.</td></tr>
+            <tr><td>Palvelimen uudelleenkäynnistys</td><td>Toimii. Käynnistin palvelimen komennolla <code>sudo reboot</code> 28.11.2026 noin klo 18.20. Chat, Ollama, MariaDB, Nginx ja viikon 2 palvelu olivat käynnissä itsestään, ja keskustelu ennen uudelleenkäynnistystä oli vielä näkyvissä.</td></tr>
+            <tr><td>Aiempien viikkojen sivut</td><td>Toimivat deployn ja uudelleenkäynnistyksen jälkeen.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Todisteet palvelimelta</h2>
+      <p>Salasanan tiiviste ja vierailijoiden IP-osoitteet on poistettu.</p>
+      <details>
+        <summary>Palvelu ja käyttäjä</summary>
+<pre><code>$ systemctl status chatapp --no-pager
+● chatapp.service - LLM-chat (Flask + Gunicorn)
+     Loaded: loaded (/etc/systemd/system/chatapp.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-11-25 19:57:09 UTC; 8min ago
+   Main PID: 409247 (gunicorn)
+      Tasks: 5 (limit: 7955)
+     Memory: 71.6M (peak: 72.6M)
+
+$ systemctl show chatapp -p User -p Group
+User=chatapp
+Group=chatapp</code></pre>
+      </details>
+      <details>
+        <summary>Tiedostojen omistajat ja oikeudet</summary>
+<pre><code>$ ls -l /opt/chatapp/app
+-rw-rw-r-- 1 ubuntu ubuntu   41 Nov 25 19:57 REVISION
+-rw-r--r-- 1 ubuntu ubuntu 4482 Nov 25 19:56 app.py
+-rw-r--r-- 1 ubuntu ubuntu 1918 Nov 25 19:56 db.py
+drwxr-xr-x 5 ubuntu ubuntu 4096 Nov 25 19:56 deploy
+-rw-r--r-- 1 ubuntu ubuntu  150 Nov 25 19:56 pyproject.toml
+-rw-r--r-- 1 ubuntu ubuntu   40 Nov 25 19:56 requirements-dev.txt
+-rw-r--r-- 1 ubuntu ubuntu   61 Nov 25 19:56 requirements.txt
+drwxr-xr-x 2 ubuntu ubuntu 4096 Nov 25 19:56 scripts
+drwxr-xr-x 2 ubuntu ubuntu 4096 Nov 25 19:56 static
+drwxr-xr-x 2 ubuntu ubuntu 4096 Nov 25 19:56 templates
+-rw-r--r-- 1 ubuntu ubuntu 4979 Nov 25 19:56 test_app.py
+
+$ ls -l /etc/chatapp/chatapp.env
+-rw-r----- 1 root chatapp 263 Nov 25 19:10 /etc/chatapp/chatapp.env
+
+$ ls -l /run/chatapp/
+srwxrwx--- 1 chatapp chatapp 0 Nov 25 19:57 gunicorn.sock</code></pre>
+      </details>
+      <details>
+        <summary>Tietokantakäyttäjän oikeudet</summary>
+<pre><code>$ sudo mysql -e "SHOW GRANTS FOR 'chatapp'@'localhost';"
+GRANT USAGE ON *.* TO `chatapp`@`localhost` IDENTIFIED BY PASSWORD '&lt;poistettu&gt;'
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, ALTER ON `chatapp`.* TO `chatapp`@`localhost`</code></pre>
+      </details>
+      <details>
+        <summary>Malli ja muisti</summary>
+<pre><code>$ ollama list
+NAME           ID              SIZE      MODIFIED
+llama3.2:1b    baf6a787fdff    1.3 GB    56 minutes ago
+
+$ free -h   (malli ladattuna)
+               total        used        free      shared  buff/cache   available
+Mem:           7.6Gi       2.3Gi       281Mi       4.1Mi       5.3Gi       5.3Gi
+Swap:             0B          0B          0B</code></pre>
+      </details>
+      <details>
+        <summary>Mitkä portit kuuntelevat</summary>
+<pre><code>$ sudo ss -ltnp
+State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process
+LISTEN  0       2048    127.0.0.1:8080       0.0.0.0:*          gunicorn (viikot 1-3)
+LISTEN  0       511     0.0.0.0:80           0.0.0.0:*          nginx
+LISTEN  0       4096    0.0.0.0:22           0.0.0.0:*          sshd
+LISTEN  0       80      127.0.0.1:3306       0.0.0.0:*          mariadbd
+LISTEN  0       4096    127.0.0.1:11434      0.0.0.0:*          ollama</code></pre>
+      </details>
+    </section>
+
+    <section>
+      <h2>Ongelma, jonka ratkaisin</h2>
+      <p>GitHub Actions ei päässyt palvelimelle, ja virhe oli <code>error in libcrypto</code>. SSH-avain oli tallentunut secretiin rikkinäisenä, koska leikepöydälle oli kopioitunut terminaalin tekstiä avaimen sijaan. Ratkaisin sen tallentamalla avaimen secretiin base64-muodossa yhtenä rivinä ja purkamalla sen työnkulussa takaisin avaintiedostoksi. Opin, että monirivistä avainta kannattaa siirtää yhtenä rivinä. Kun avain vahingossa näkyi kuvakaappauksessa, vaihdoin sen uuteen ja poistin vanhan palvelimelta.</p>
+    </section>
+
+    <p><a href="/viikko5/">← Takaisin chattiin</a></p>
+  </main>
+</body>
+</html>
